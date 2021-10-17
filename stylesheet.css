@@ -1,0 +1,65 @@
+body {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+section {
+    margin: 10px;
+    width: 100%;
+}
+
+form {
+    width: 100%;
+    font-size: large;
+    border: 3px solid gray;
+}
+
+
+#tilemap_list > li * {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#tilemap_list > li > a {
+    cursor: pointer;
+}
+
+
+#tileset_configuration > input {
+    width: 100%;
+}
+
+#imgdrop {
+    display: flex;
+    align-items: center;
+
+    width: 200px;
+    height: 200px;
+    font-size: larger;
+
+    border: 3px dashed black;
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-y: center;
+}
+
+#imgdrop p {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#loadedimg_viewer {
+    padding-top: 50px;
+    image-rendering: crisp-edges;
+}
+
+
+#bitmask_selection {
+    margin-left: auto; 
+    margin-right: auto;
+}
+

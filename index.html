@@ -1,0 +1,120 @@
+<html>
+
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="stylesheet.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <!-- image drop and configuration -->
+    <section style="width: 500px;">
+
+        <section>
+            <p>Tilemaps:</p>
+            <ul id="tilemap_list"></ul>
+            <button onclick="createNewTilemap();">Create New Tilemap</button>
+        </section>
+
+        <section id="tilemap_configuration" style="display: none;">
+            <div style="display: flex;">
+                <div id="imgdrop">
+                    <p>Drop image or paste it</p>
+                </div>
+                <!-- <button>Generate Tileset</button> -->
+            </div>
+
+            <div>
+                <button onclick="onclick_tilemapName_btt();">Change Tilemap Name</button>
+                <button onclick="onclick_deleteTilemap_btt();">Delete Tilemap</button>
+            </div>
+
+            <form id="tileset_configuration">
+                <label for="tile_width">Tile Width</label>
+                <input type="number" name="tile_width" min="1" value="8" onchange="onTilesetConfig_change();">
+
+                <label for="tile_height">Tile Height</label>
+                <input type="number" name="tile_height" min="1" value="8" onchange="onTilesetConfig_change();">
+            
+                <label for="offset_x">Offset x</label>
+                <input type="number" name="offset_x" min="0" value="0" onchange="onTilesetConfig_change();">
+
+                <label for="offset_y">Offset y</label>
+                <input type="number" name="offset_y" min="0" value="0" onchange="onTilesetConfig_change();">
+
+                <label for="margin_x">Tile (right) Margin x</label>
+                <input type="number" name="margin_x" min="0" value="0" onchange="onTilesetConfig_change();">
+
+                <label for="margin_y">Tile (bottom) Margin y</label>
+                <input type="number" name="margin_y" min="0" value="0" onchange="onTilesetConfig_change();">
+            </form>
+
+            <form>
+                <label for="bitmask_type">Bitmask type:</label>
+                <select id="bitmask_type_select" name="bitmask_type" onchange="onBitmaskTypeChange(this.value);">
+                    <option value="2x2">2x2</option>
+                    <option value="3x3_minimal">3x3 (Minimal)</option>
+                    <option value="3x3">3x3</option>
+                </select>
+            </form>
+
+            <form style="display: flex; flex-direction: column;" autocomplete="off">
+                <label>
+                    None
+                    <input type="radio" name="editing_option" value="none" checked>
+                </label>
+
+                <label>
+                    Crop Tileset
+                    <input type="radio" id="crop_option" name="editing_option" value="crop_tileset">
+                    <button type="button" id="crop_button" onclick="onCropbtt_clicked();" disabled>Crop selected</button>
+                </label>
+
+                <label>
+                    Bitmask Edit
+                    <input type="radio" id="bitmask_option" name="editing_option" value="bitmask_edit">
+                </label>
+            </form>
+        </section>
+    </section>
+    
+    <!-- editing section -->
+    <section style="width: 100%; height: 100%; overflow: scroll;">
+
+        <div style="position: fixed; top: 0; display: flex; gap: 15px; background-color: white;">
+
+            <div style="display: flex; flex-direction: column;">
+                <label for="draw_grid">Draw Grid</label>
+                <input type="checkbox" name="draw_grid" id="draw_grid_checkbox" onchange="displayCurrentTilemap();">
+            </div>
+
+            <div style="display: flex; flex-direction: column;">
+                Bitmask Selection
+                <div id="bitmask_selection" autocomplete="off">
+                    <table id="bitmask_input_table">
+                        <tr>
+                            <td><input type="checkbox" onchange="onBitmaskInputChange();" disabled></td>
+                            <td><input type="checkbox" onchange="onBitmaskInputChange();" disabled></td>
+                        </tr>
+            
+                        <tr>
+                            <td><input type="checkbox" onchange="onBitmaskInputChange();" disabled></td>
+                            <td><input type="checkbox" onchange="onBitmaskInputChange();" disabled></td>
+                        </tr>
+                    
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div style="width: 100%; height: 100%;">
+            <canvas id="loadedimg_viewer"></canvas>
+        </div>
+    </section>
+
+
+    <!-- <script src="https://unpkg.com/@panzoom/panzoom@4.4.1/dist/panzoom.min.js"></script> -->
+    <script src="gdautotile_tool.js"></script>
+</body>
+
+</html>
